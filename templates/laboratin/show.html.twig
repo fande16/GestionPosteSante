@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Laboratin{% endblock %}
+
+{% block content%}
+    <h1>Laboratin</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ laboratin.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ laboratin.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ laboratin.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ laboratin.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ laboratin.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_laboratin_index') }}">back to list</a>
+
+    <a href="{{ path('app_laboratin_edit', {'id': laboratin.id}) }}"class="btn btn-lg btn-primary">edit</a>
+
+    {{ include('laboratin/_delete_form.html.twig') }}
+{% endblock %}

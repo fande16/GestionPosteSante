@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ExamenClinique index{% endblock %}
+
+{% block content%}
+    <h1>ExamenClinique index</h1>
+
+    <div class="data-table-container">
+    <table id="example" class="table table-striped " style="width:100%">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Resultat</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for examen_clinique in examen_cliniques %}
+            <tr>
+                <td>{{ examen_clinique.id }}</td>
+                <td>{{ examen_clinique.type }}</td>
+                <td>{{ examen_clinique.resultat }}</td>
+                <td>{{ examen_clinique.date ? examen_clinique.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_examen_clinique_show', {'id': examen_clinique.id}) }}">show</a>
+                    <a href="{{ path('app_examen_clinique_edit', {'id': examen_clinique.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+    <a href="{{ path('app_examen_clinique_new') }}"class="btn btn-lg btn-primary">Create new</a>
+{% endblock %}

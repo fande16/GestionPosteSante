@@ -1,0 +1,15 @@
+{{ form_start(form) }}
+       <label for="role_user" class="form-label">Role</label>
+                    <select id="role_user" name="role" class="form-select"  >
+                        <option value="ROLE_RECEPTIONISTE">RECEPTIONISTE</option>
+                        <option value="ROLE_CAISSIER">CAISSIER</option>
+                        <option value="ROLE_MEDECIN">MEDECIN</option>
+                        <option value="ROLE_INFIRMIER">INFIRMIER</option>
+                        <option value="ROLE_ADMIN">LABORATIN</option>
+                        <option value="ROLE_MEDECIN">PHARMACIEN</option>
+                        <option value="ROLE_ADMIN">ADMIN</option>
+                    </select>
+    {{ form_widget(form) }}
+  
+    <button class="btn btn-lg btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

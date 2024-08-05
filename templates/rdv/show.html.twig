@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rdv{% endblock %}
+
+{% block content%}
+    <h1>Rdv</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ rdv.id }}</td>
+            </tr>
+            <tr>
+                <th>DatePrise</th>
+                <td>{{ rdv.datePrise ? rdv.datePrise|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateRdv</th>
+                <td>{{ rdv.dateRdv ? rdv.dateRdv|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Motif</th>
+                <td>{{ rdv.motif }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+
+    <div class="d-flex justify-content-end mb-3">
+        <a href="{{ path('app_rdv_edit', {'id': rdv.id}) }}" class="btn btn-lg btn-primary me-2">Edit</a>
+
+        {{ include('rdv/_delete_form.html.twig') }}
+
+    </div>
+    <a class="btn btn-lg btn-success" href="{{ path('app_consultation_new', { rdvId: rdv.id }) }}">Faire la Consultation</a>
+</br>
+    <a href="{{ path('app_rdv_index') }}">back to list</a>
+    
+{% endblock %}

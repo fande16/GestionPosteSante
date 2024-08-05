@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Receptioniste index{% endblock %}
+
+{% block content%}
+    <h1>Receptioniste index</h1>
+
+    <div class="data-table-container">
+    <table id="example" class="table table-striped " style="width:100%">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Telephone</th>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for receptioniste in receptionistes %}
+            <tr>
+                <td>{{ receptioniste.id }}</td>
+                <td>{{ receptioniste.nom }}</td>
+                <td>{{ receptioniste.prenom }}</td>
+                <td>{{ receptioniste.telephone }}</td>
+                <td>{{ receptioniste.email }}</td>
+                <td>
+                    <a href="{{ path('app_receptioniste_show', {'id': receptioniste.id}) }}">show</a>
+                    <a href="{{ path('app_receptioniste_edit', {'id': receptioniste.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+    <a href="{{ path('app_receptioniste_new') }}"class="btn btn-lg btn-primary">Create new</a>
+{% endblock %}

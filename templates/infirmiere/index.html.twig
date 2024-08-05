@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Infirmiere index{% endblock %}
+
+{% block content%}
+    <h1>Infirmiere index</h1>
+
+    <div class="data-table-container">
+    <table id="example" class="table table-striped " style="width:100%">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Telephone</th>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for infirmiere in infirmieres %}
+            <tr>
+                <td>{{ infirmiere.id }}</td>
+                <td>{{ infirmiere.nom }}</td>
+                <td>{{ infirmiere.prenom }}</td>
+                <td>{{ infirmiere.telephone }}</td>
+                <td>{{ infirmiere.email }}</td>
+                <td>
+                    <a href="{{ path('app_infirmiere_show', {'id': infirmiere.id}) }}">show</a>
+                    <a href="{{ path('app_infirmiere_edit', {'id': infirmiere.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+    <a href="{{ path('app_infirmiere_new') }}"class="btn btn-lg btn-primary">Create new</a>
+{% endblock %}

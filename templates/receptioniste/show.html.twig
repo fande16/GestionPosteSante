@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Receptioniste{% endblock %}
+
+{% block content%}
+    <h1>Receptioniste</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ receptioniste.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ receptioniste.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ receptioniste.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ receptioniste.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ receptioniste.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_receptioniste_index') }}">back to list</a>
+
+    <a href="{{ path('app_receptioniste_edit', {'id': receptioniste.id}) }}"class="btn btn-lg btn-primary">edit</a>
+
+    {{ include('receptioniste/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Medecin index{% endblock %}
+
+{% block content%}
+    <h1>Medecin index</h1>
+
+    <div class="data-table-container">
+    <table id="example" class="table table-striped " style="width:100%">
+
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Age</th>
+                <th>Adresse</th>
+                <th>Specialite</th>
+                <th>Telephone</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for medecin in medecins %}
+            <tr>
+                <td>{{ medecin.utilisateur ? medecin.utilisateur.username : 'N/A' }}</td>
+                <td>{{ medecin.nom }}</td>
+                <td>{{ medecin.prenom }}</td>
+                <td>{{ medecin.age }}</td>
+                <td>{{ medecin.adresse }}</td>
+                <td>{{ medecin.specialite }}</td>
+                <td>{{ medecin.telephone }}</td>
+                <td>
+                    <a href="{{ path('app_medecin_show', {'id': medecin.id}) }}">show</a>
+                    <a href="{{ path('app_medecin_edit', {'id': medecin.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+    <a href="{{ path('app_medecin_new') }}"class="btn btn-lg btn-primary">Create new</a>
+{% endblock %}

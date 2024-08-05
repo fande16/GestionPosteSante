@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rdv index{% endblock %}
+
+{% block content%}
+    <h1>Rdv index</h1>
+
+    <div class="data-table-container">
+    <table id="example" class="table table-striped " style="width:100%">
+
+        <thead>
+            <tr>
+                <th>patient</th>
+                <th>Motif</th>
+                <th>DateRdv</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rdv in rdvs %}
+            <tr>
+                <td>{{ rdv.patient }}</td>
+                <td>{{ rdv.motif }}</td>
+                <td>{{ rdv.dateRdv ? rdv.dateRdv|date('Y-m-d H:i:s') : '' }}</td>
+                
+                <td>
+                    <a href="{{ path('app_rdv_show', {'id': rdv.id}) }}">show</a>
+                    <a href="{{ path('app_rdv_edit', {'id': rdv.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+    <a href="{{ path('app_rdv_new') }}"class="btn btn-lg btn-primary">Create new</a>
+{% endblock %}

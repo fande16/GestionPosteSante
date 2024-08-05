@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Soins index{% endblock %}
+
+{% block content%}
+    <h1>Soins index</h1>
+
+    <div class="data-table-container">
+    <table id="example" class="table table-striped " style="width:100%">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Frequence_Cardiaque</th>
+                <th>Pression_artérielle</th>
+                <th>Température</th>
+                <th>pression_respiratoire</th>
+                <th>Diurèse</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for soin in soins %}
+            <tr>
+                <td>{{ soin.id }}</td>
+                <td>{{ soin.FrequenceCardiaque }}</td>
+                <td>{{ soin.PressionArtérielle }}</td>
+                <td>{{ soin.Température }}</td>
+                <td>{{ soin.pressionRespiratoire }}</td>
+                <td>{{ soin.Diurèse }}</td>
+                <td>
+                    <a href="{{ path('app_soins_show', {'id': soin.id}) }}">show</a>
+                    <a href="{{ path('app_soins_edit', {'id': soin.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+    <a href="{{ path('app_soins_new') }}"class="btn btn-lg btn-primary">Create new</a>
+{% endblock %}

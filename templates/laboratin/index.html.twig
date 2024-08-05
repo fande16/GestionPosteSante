@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Laboratin index{% endblock %}
+
+{% block content%}
+    <h1>Laboratin index</h1>
+
+    <div class="data-table-container">
+    <table id="example" class="table table-striped " style="width:100%">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Telephone</th>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for laboratin in laboratins %}
+            <tr>
+                <td>{{ laboratin.id }}</td>
+                <td>{{ laboratin.nom }}</td>
+                <td>{{ laboratin.prenom }}</td>
+                <td>{{ laboratin.telephone }}</td>
+                <td>{{ laboratin.email }}</td>
+                <td>
+                    <a href="{{ path('app_laboratin_show', {'id': laboratin.id}) }}">show</a>
+                    <a href="{{ path('app_laboratin_edit', {'id': laboratin.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+    <a href="{{ path('app_laboratin_new') }}"class="btn btn-lg btn-primary">Create new</a>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page d'Accueil - Poste de Santé{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <!-- Section de bienvenue -->
+        <div class="col-12">
+            <div class="alert alert-primary" role="alert">
+                <h4 class="alert-heading">Bienvenue dans l'application de gestion du poste de santé !</h4>
+                <p>Sur cette page, vous pouvez accéder aux principales fonctionnalités de l'application et obtenir un aperçu des statistiques actuelles.</p>
+                <hr>
+                <p class="mb-0">Veuillez utiliser le menu pour naviguer entre les différentes sections.</p>
+            </div>
+        </div>
+
+        <!-- Statistiques Générales -->
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5 class="card-title">Statistiques du Poste de Santé</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Nombre total de patients : {{ totalPatients }}</p>
+                    <p class="card-text">Nombre de rendez-vous aujourd'hui : {{ todayAppointments }}</p>
+                    <p class="card-text">Nombre de rendez-vous à venir : {{ upcomingAppointments }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Derniers Rendez-vous -->
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5 class="card-title">Derniers Rendez-vous</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        {% for rdv in recentAppointments %}
+                            <li class="list-group-item">
+                                {{ rdv.patient }} - {{ rdv.motif }} ({{ rdv.dateRdv ? rdv.dateRdv|date('Y-m-d H:i:s') : 'Non spécifiée' }})
+                            </li>
+                        {% else %}
+                            <li class="list-group-item">Aucun rendez-vous récent.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

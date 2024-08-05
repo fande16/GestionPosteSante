@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prescription index{% endblock %}
+
+{% block content%}
+    <h1>Prescription index</h1>
+
+    <div class="data-table-container">
+    <table id="example" class="table table-striped " style="width:100%">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>Posologie</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for prescription in prescriptions %}
+            <tr>
+                <td>{{ prescription.id }}</td>
+                <td>{{ prescription.description }}</td>
+                <td>{{ prescription.posologie }}</td>
+                <td>{{ prescription.date ? prescription.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_prescription_show', {'id': prescription.id}) }}">show</a>
+                    <a href="{{ path('app_prescription_edit', {'id': prescription.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+    <a href="{{ path('app_prescription_new') }}"class="btn btn-lg btn-primary">Create new</a>
+{% endblock %}

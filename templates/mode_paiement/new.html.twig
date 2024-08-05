@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ModePaiement{% endblock %}
+
+{% block content%}
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card border-primary mb-3">
+                <div class="card-header">
+
+    <h1>Create new ModePaiement</h1>
+                </div>
+                <div class="card-body">
+
+    {{ include('mode_paiement/_form.html.twig') }}
+
+    <a href="{{ path('app_mode_paiement_index') }}">back to list</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

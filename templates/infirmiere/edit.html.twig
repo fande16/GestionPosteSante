@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Infirmiere{% endblock %}
+
+{% block content%}
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card border-primary mb-3">
+                <div class="card-header">
+
+    <h1>Edit Infirmiere</h1>
+
+    {{ include('infirmiere/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('infirmiere/_delete_form.html.twig') }}
+
+    <a href="{{ path('app_infirmiere_index') }}">back to list</a>
+
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

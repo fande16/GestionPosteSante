@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hospitalisation index{% endblock %}
+
+{% block content%}
+    <h1>Hospitalisation index</h1>
+
+    <div class="data-table-container">
+    <table id="example" class="table table-striped " style="width:100%">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateEntre</th>
+                <th>DateSortie</th>
+                <th>Chambre</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hospitalisation in hospitalisations %}
+            <tr>
+                <td>{{ hospitalisation.id }}</td>
+                <td>{{ hospitalisation.dateEntre ? hospitalisation.dateEntre|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ hospitalisation.dateSortie ? hospitalisation.dateSortie|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ hospitalisation.chambre }}</td>
+                <td>
+                    <a href="{{ path('app_hospitalisation_show', {'id': hospitalisation.id}) }}">show</a>
+                    <a href="{{ path('app_hospitalisation_edit', {'id': hospitalisation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+    <a href="{{ path('app_hospitalisation_new') }}"class="btn btn-lg btn-primary">Create new</a>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DASHBOARD POSTE DE SANTÉ{% endblock %}
+
+{% block content %}
+</br>
+<div class="row">
+  <div class="col">
+    <div class="toast show bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">PATIENTS</strong>
+        <small>{{ "now"|date("F jS \\a\\t g:ia") }}</small>
+        <button type="button" class="btn-close ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="toast-body">
+        Nombre total de patients : {{ totalPatients }}
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="toast show bg-info" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">RENDEZ-VOUS DU JOUR</strong>
+        <small>{{ "now"|date("F jS \\a\\t g:ia") }}</small>
+        <button type="button" class="btn-close ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="toast-body " style="color: #ff0000;">
+        Rendez-vous aujourd'hui : {{ todayAppointments }}
+      </div>
+    </div>
+  </div>
+</div>
+
+</br>
+
+ <div class="data-table-container">
+    <table id="example" class="table table-striped " style="width:100%">
+
+        <thead>
+            <tr>
+                <th>patient</th>
+                <th>Motif</th>
+                <th>DateRdv</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rdv in rdvs %}
+            <tr>
+                <td>{{ rdv.patient }}</td>
+                <td>{{ rdv.motif }}</td>
+                <td>{{ rdv.dateRdv ? rdv.dateRdv|date('Y-m-d H:i:s') : '' }}</td>
+                
+                <td>
+                    <a href="{{ path('app_rdv_show', {'id': rdv.id}) }}">show</a>
+                    <a href="{{ path('app_rdv_edit', {'id': rdv.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

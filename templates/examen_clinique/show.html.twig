@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ExamenClinique{% endblock %}
+
+{% block content%}
+    <h1>ExamenClinique</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ examen_clinique.id }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ examen_clinique.type }}</td>
+            </tr>
+            <tr>
+                <th>Resultat</th>
+                <td>{{ examen_clinique.resultat }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ examen_clinique.date ? examen_clinique.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_examen_clinique_index') }}">back to list</a>
+
+    <a href="{{ path('app_examen_clinique_edit', {'id': examen_clinique.id}) }}"class="btn btn-lg btn-primary">edit</a>
+
+    {{ include('examen_clinique/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Consultation{% endblock %}
+
+{% block content%}
+    <h1>Consultation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ consultation.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ consultation.date ? consultation.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Motif</th>
+                <td>{{ consultation.motif }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ consultation.description }}</td>
+            </tr>
+            <tr>
+                <th>diagnostique</th>
+                <td>{{ consultation.diagnostique }}</td>
+            </tr>
+            <tr>
+                <th>Poids</th>
+                <td>{{ consultation.poids }}</td>
+            </tr>
+            <tr>
+                <th>taille</th>
+                <td>{{ consultation.taille }}</td>
+            </tr>
+            <tr>
+                <th>temperature</th>
+                <td>{{ consultation.temperature }}</td>
+            </tr>
+            <tr>
+                <th>frequence_cardiaque</th>
+                <td>{{ consultation.frequenceCardiaque }}</td>
+            </tr>
+            <tr>
+                <th>tension</th>
+                <td>{{ consultation.tension }}</td>
+            </tr>
+            <tr>
+                <th>pression_respiratoire</th>
+                <td>{{ consultation.pressionRespiratoire }}</td>
+            </tr>
+            <tr>
+                <th>diurese</th>
+                <td>{{ consultation.diurese }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-end mb-3">
+        
+        <a href="{{ path('app_consultation_edit', {'id': consultation.id}) }}"class="btn btn-lg btn-primary">edit</a>
+
+        {{ include('consultation/_delete_form.html.twig') }}
+    </div>
+    <a class="btn btn-lg btn-success" href="{{ path('app_examen_clinique_new', { consultationId: consultation.id }) }}">Demander examen</a>
+
+    <a class="btn btn-lg btn-success" href="{{ path('app_prescription_new', { consultationId: consultation.id }) }}">Ajouter Prescription</a>
+
+   
+</br>
+ <a href="{{ path('app_consultation_index') }}">back to list</a>
+    {% endblock %}
